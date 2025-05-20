@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="15" alignment="TOP_CENTER" xmlns:fx="http://javafx.com/fxml" fx:controller="dev.qf.client.ui.MenuManagementController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="메뉴 관리" style="-fx-font-size: 24px;" />
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="카테고리 선택:" />
+        <ComboBox fx:id="categoryFilter" promptText="카테고리 선택" onAction="#handleCategorySelection" />
+    </HBox>
+
+    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" style="-fx-background-color: transparent;">
+        <FlowPane fx:id="menuItemsPane" hgap="15" vgap="15" alignment="TOP_LEFT"/>
+    </ScrollPane>
+
+    <TitledPane text="메뉴 목록" expanded="false">
+        <VBox spacing="10">
+            <TableView fx:id="menuTable" prefHeight="250" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="idColumn" text="ID" prefWidth="50"/>
+                    <TableColumn fx:id="nameColumn" text="이름" prefWidth="150"/>
+                    <TableColumn fx:id="categoryColumn" text="카테고리" prefWidth="100"/>
+                    <TableColumn fx:id="priceColumn" text="가격" prefWidth="100"/>
+                </columns>
+            </TableView>
+
+            <HBox spacing="10" alignment="CENTER">
+                <Button text="메뉴 추가" onAction="#handleAddMenu"/>
+                <Button text="메뉴 삭제" onAction="#handleDeleteMenu"/>
+                <Button text="메뉴 수정" onAction="#handleEditMenu"/>
+            </HBox>
+        </VBox>
+    </TitledPane>
+
+    <TitledPane text="선택된 메뉴 정보" expanded="false">
+        <HBox spacing="20">
+            <VBox spacing="10" alignment="TOP_CENTER" prefWidth="200">
+                <Label text="이미지 미리보기" />
+                <ImageView fx:id="selectedMenuImage" fitWidth="180" fitHeight="180" preserveRatio="true" />
+            </VBox>
+
+            <VBox spacing="10" HBox.hgrow="ALWAYS">
+                <GridPane hgap="10" vgap="10">
+                    <Label text="메뉴명:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                    <Label fx:id="selectedMenuName" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                    <Label text="가격:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                    <Label fx:id="selectedMenuPrice" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                    <Label text="카테고리:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                    <Label fx:id="selectedMenuCategory" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                    <Label text="설명:" GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.valignment="TOP" />
+                    <TextArea fx:id="selectedMenuDescription" GridPane.columnIndex="1" GridPane.rowIndex="3"
+                              prefRowCount="3" editable="false" wrapText="true" />
+                </GridPane>
+            </VBox>
+        </HBox>
+    </TitledPane>
+</VBox>
