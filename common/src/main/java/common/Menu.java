@@ -1,4 +1,4 @@
 package common;
 
-public record Menu() {
+public class Menu {
 }
